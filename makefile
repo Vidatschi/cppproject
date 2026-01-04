@@ -1,23 +1,18 @@
-# Compiler and flags
-CC = g++
-CFLAGS = -std=c++23
-LIB = -lstdc++exp
-
-# Source files and target output
-SRCS = main.cpp
-TARGET = programm
-
 # Default target (build)
-all: $(TARGET)
+all: programm
 
-# Build rule
-$(TARGET): $(SRCS)
-	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET) $(LIB)
+# Build rules
+programm: main.o
+	g++ -std=c++23 main.o -o programm -lstdc++exp
+
+main.o: main.cpp
+	g++ -std=c++23 -c main.cpp -o main.o -lstdc++exp
 
 # Run rule
-run: $(TARGET)
-	./$(TARGET)
+run: programm
+	./programm
 
 # Clean rule
 clean:
-	del $(TARGET).exe
+	del programm.exe
+	del main.o
